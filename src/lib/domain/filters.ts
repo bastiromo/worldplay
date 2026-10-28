@@ -1,11 +1,14 @@
 import type { Channel, ChannelFilters, Country } from "./types";
 
+const VISIBLE_STATUSES = new Set<Channel["rightsStatus"]>(["approved", "public-official", "public-listed"]);
+
 /**
- * Una señal es visible si está autorizada o si es una emisión pública del propio
- * titular. Pendientes, rechazadas y retiradas nunca se muestran.
+ * Una señal es visible si está autorizada o si es una emisión pública (del propio
+ * titular o listada en un directorio abierto). Pendientes, rechazadas y retiradas
+ * nunca se muestran.
  */
 export function isPubliclyVisible(channel: Channel): boolean {
-  return channel.rightsStatus === "approved" || channel.rightsStatus === "public-official";
+  return VISIBLE_STATUSES.has(channel.rightsStatus);
 }
 
 export function isDemo(channel: Channel): boolean {

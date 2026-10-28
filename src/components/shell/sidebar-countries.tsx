@@ -3,6 +3,8 @@ import { catalog } from "@/lib/catalog/repository";
 
 export async function SidebarCountries() {
   const countries = await catalog.listCountries();
+  // Con un solo país la lista no ayuda a navegar.
+  if (countries.length < 2) return null;
 
   return (
     <section aria-labelledby="sidebar-countries" className="mt-8">

@@ -93,12 +93,14 @@ const dateFormat = new Intl.DateTimeFormat("es", { dateStyle: "long", timeZone: 
 const SOURCE_LABEL: Record<Channel["provenance"]["source"], string> = {
   demo: "Demostración",
   official: "Emisor oficial",
+  directory: "Directorio abierto",
   licensed: "Con licencia",
 };
 
 const RIGHTS_LABEL: Record<Channel["rightsStatus"], string> = {
   approved: "Autorizada por el titular",
   "public-official": "Emisión pública del titular",
+  "public-listed": "Emisión pública, sin acuerdo",
   pending: "En revisión",
   rejected: "No autorizada",
   withdrawn: "Retirada",

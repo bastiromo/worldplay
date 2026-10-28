@@ -15,7 +15,7 @@ describe("filterChannels", () => {
   it("solo devuelve señales autorizadas o emisiones públicas oficiales", () => {
     const result = filterChannels(ALL_CHANNELS, {}, DEMO_COUNTRIES);
     expect(result.length).toBeGreaterThan(0);
-    expect(result.every((c) => c.rightsStatus === "approved" || c.rightsStatus === "public-official")).toBe(true);
+    expect(result.every((c) => ["approved", "public-official", "public-listed"].includes(c.rightsStatus))).toBe(true);
     expect(result.some((c) => c.name === "Señal en revisión")).toBe(false);
   });
 
@@ -49,7 +49,8 @@ describe("withoutRedundantDemos", () => {
   });
 
   it("mantiene la demo de un tipo sin señales reales", () => {
-    const result = withoutRedundantDemos(ALL_CHANNELS);
+    const onlyRealTv = ALL_CHANNELS.filter((c) => isDemo(c) || c.kind === "tv");
+    const result = withoutRedundantDemos(onlyRealTv);
     expect(result.filter((c) => c.kind === "radio").every(isDemo)).toBe(true);
     expect(result.some((c) => c.kind === "radio")).toBe(true);
   });

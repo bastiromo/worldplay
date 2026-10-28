@@ -13,8 +13,9 @@ export default function SourcesPage() {
     <article className="mx-auto max-w-2xl">
       <h1 className="font-display text-5xl leading-[0.95] font-extrabold sm:text-6xl">Fuentes y retirada de señales</h1>
       <p className="mt-4 text-[1.05rem] leading-relaxed text-paper/85">
-        WorldPlay es un directorio: reproduce en tu navegador las emisiones que cada canal publica en su propia
-        infraestructura. No almacenamos, grabamos ni retransmitimos ninguna señal desde nuestros servidores.
+        WorldPlay es un directorio: reproduce en tu navegador emisiones que ya se transmiten públicamente en internet,
+        directamente desde el servidor de origen. No almacenamos, grabamos ni retransmitimos ninguna señal desde
+        nuestros servidores.
       </p>
 
       <section aria-labelledby="criterios" className="mt-10">
@@ -22,8 +23,15 @@ export default function SourcesPage() {
           Qué señales incluimos
         </h2>
         <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-paper/85 marker:text-dial">
-          <li>Emisiones que el propio canal sirve desde su dominio o el de la institución a la que pertenece.</li>
+          <li>
+            Emisiones públicas de canales y radios, encontradas en directorios abiertos (iptv-org para televisión y
+            Radio Browser para radio) y comprobadas una por una.
+          </li>
           <li>Accesibles sin registro, sin claves de acceso y mediante conexión cifrada.</li>
+          <li>
+            Excluimos las copias de terceros: retransmisiones de cableoperadores, proveedores de internet o plataformas
+            que no son el canal.
+          </li>
           <li>
             Nunca eludimos geobloqueos, DRM ni restricciones de reproducción: si un canal no está disponible en tu país,
             te lo indicamos.
@@ -31,8 +39,9 @@ export default function SourcesPage() {
           <li>Excluimos los canales cuyos titulares han pedido no aparecer en directorios públicos.</li>
         </ul>
         <p className="mt-4 leading-relaxed text-mist">
-          Cada ficha indica quién emite la señal, su sitio oficial y si contamos con una autorización expresa o se trata
-          de una emisión pública del titular.
+          Cada ficha indica el sitio oficial de la emisora, el servidor desde el que se emite y si la señal sale de la
+          infraestructura de la propia emisora o de un proveedor de streaming. Por ahora ninguna cuenta con un acuerdo
+          expreso con WorldPlay.
         </p>
       </section>
 

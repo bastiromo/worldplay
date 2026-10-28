@@ -97,17 +97,17 @@ const SEEDS: DemoSeed[] = [
   { number: 816, name: "Señal en revisión", kind: "tv", countryCode: "CL", language: "Español", category: "Noticias", hue: 60, stream: VIDEO.aurora, rightsStatus: "pending", description: "No debe aparecer en la interfaz: sus derechos aún no se han aprobado." },
 
   // --- Radio ---------------------------------------------------------------
-  { number: 101, name: "Brisa Andina", kind: "radio", countryCode: "CL", language: "Español", category: "Música", hue: 38, stream: AUDIO.brisa, description: "Folk, cantautores y nueva canción latinoamericana las 24 horas." },
-  { number: 102, name: "Nocturna Santiago", kind: "radio", countryCode: "CL", language: "Español", category: "Música", hue: 250, stream: AUDIO.nocturno, description: "Jazz, ambient y música instrumental para la noche." },
-  { number: 103, name: "Radio Ombú", kind: "radio", countryCode: "AR", language: "Español", category: "Noticias", hue: 205, stream: AUDIO.costa, description: "Informativos, entrevistas y la columna de economía de las mañanas." },
-  { number: 104, name: "Tango Eterno", kind: "radio", countryCode: "AR", language: "Español", category: "Música", hue: 0, stream: AUDIO.nocturno, description: "Grandes orquestas, milongas y tango contemporáneo." },
-  { number: 105, name: "Costa Verde Radio", kind: "radio", countryCode: "PE", language: "Español", category: "Música", hue: 150, stream: AUDIO.costa, description: "Música criolla, chicha y fusión peruana." },
-  { number: 106, name: "Bogotá Hablada", kind: "radio", countryCode: "CO", language: "Español", category: "Noticias", hue: 215, stream: AUDIO.brisa, description: "Debate, opinión y llamadas de oyentes sobre la actualidad." },
-  { number: 107, name: "Mariachi Sur", kind: "radio", countryCode: "MX", language: "Español", category: "Música", hue: 15, stream: AUDIO.costa, description: "Mariachi, ranchera y son jarocho, con dedicatorias en vivo." },
-  { number: 108, name: "Bossa Litoral", kind: "radio", countryCode: "BR", language: "Portugués", category: "Música", hue: 175, stream: AUDIO.brisa, description: "Bossa nova, MPB y samba suave frente al mar." },
-  { number: 109, name: "Onda Mediterránea", kind: "radio", countryCode: "ES", language: "Español", category: "Cultura", hue: 195, stream: AUDIO.nocturno, description: "Literatura, ciencia y radioteatro con invitados especiales." },
-  { number: 110, name: "Gol Ibérico", kind: "radio", countryCode: "ES", language: "Español", category: "Deportes", hue: 125, stream: AUDIO.costa, description: "Carrusel deportivo con todos los partidos de la jornada." },
-  { number: 111, name: "Rádio Alfama", kind: "radio", countryCode: "PT", language: "Portugués", category: "Música", hue: 330, stream: AUDIO.nocturno, description: "Fado clásico y nuevas voces portuguesas." },
+  { number: 901, name: "Brisa Andina", kind: "radio", countryCode: "CL", language: "Español", category: "Música", hue: 38, stream: AUDIO.brisa, description: "Folk, cantautores y nueva canción latinoamericana las 24 horas." },
+  { number: 902, name: "Nocturna Santiago", kind: "radio", countryCode: "CL", language: "Español", category: "Música", hue: 250, stream: AUDIO.nocturno, description: "Jazz, ambient y música instrumental para la noche." },
+  { number: 903, name: "Radio Ombú", kind: "radio", countryCode: "AR", language: "Español", category: "Noticias", hue: 205, stream: AUDIO.costa, description: "Informativos, entrevistas y la columna de economía de las mañanas." },
+  { number: 904, name: "Tango Eterno", kind: "radio", countryCode: "AR", language: "Español", category: "Música", hue: 0, stream: AUDIO.nocturno, description: "Grandes orquestas, milongas y tango contemporáneo." },
+  { number: 905, name: "Costa Verde Radio", kind: "radio", countryCode: "PE", language: "Español", category: "Música", hue: 150, stream: AUDIO.costa, description: "Música criolla, chicha y fusión peruana." },
+  { number: 906, name: "Bogotá Hablada", kind: "radio", countryCode: "CO", language: "Español", category: "Noticias", hue: 215, stream: AUDIO.brisa, description: "Debate, opinión y llamadas de oyentes sobre la actualidad." },
+  { number: 907, name: "Mariachi Sur", kind: "radio", countryCode: "MX", language: "Español", category: "Música", hue: 15, stream: AUDIO.costa, description: "Mariachi, ranchera y son jarocho, con dedicatorias en vivo." },
+  { number: 908, name: "Bossa Litoral", kind: "radio", countryCode: "BR", language: "Portugués", category: "Música", hue: 175, stream: AUDIO.brisa, description: "Bossa nova, MPB y samba suave frente al mar." },
+  { number: 909, name: "Onda Mediterránea", kind: "radio", countryCode: "ES", language: "Español", category: "Cultura", hue: 195, stream: AUDIO.nocturno, description: "Literatura, ciencia y radioteatro con invitados especiales." },
+  { number: 910, name: "Gol Ibérico", kind: "radio", countryCode: "ES", language: "Español", category: "Deportes", hue: 125, stream: AUDIO.costa, description: "Carrusel deportivo con todos los partidos de la jornada." },
+  { number: 911, name: "Rádio Alfama", kind: "radio", countryCode: "PT", language: "Portugués", category: "Música", hue: 330, stream: AUDIO.nocturno, description: "Fado clásico y nuevas voces portuguesas." },
 ];
 
 export const DEMO_CHANNELS: Channel[] = SEEDS.map(toChannel);

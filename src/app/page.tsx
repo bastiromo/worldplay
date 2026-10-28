@@ -6,7 +6,9 @@ import { HeroPreview } from "@/components/home/hero-preview";
 import { PlayIcon } from "@/components/ui/icons";
 import { catalog } from "@/lib/catalog/repository";
 
-const FEATURED_SLUG = "24-horas-rtve";
+const FEATURED_SLUG = "t13-en-vivo";
+/** Las filas de la portada muestran los primeros canales por número; el resto, en sus catálogos. */
+const ROW_LIMIT = 14;
 
 export default async function HomePage() {
   const [countries, tv, radio, featured] = await Promise.all([
@@ -59,6 +61,7 @@ export default async function HomePage() {
         </section>
       )}
 
+      {countries.length > 1 && (
       <section aria-labelledby="sintonizador" className="mt-14">
         <h2 id="sintonizador" className="font-display text-3xl font-bold">
           Sintoniza un país
@@ -68,13 +71,14 @@ export default async function HomePage() {
           <CountryTuner countries={countries} basePath="/explorar" />
         </div>
       </section>
+      )}
 
-      <RowSection id="fila-tv" title="Televisión en vivo" href="/tv" linkLabel="Ver todos los canales">
-        <ChannelRow channels={tv} countries={countries} />
+      <RowSection id="fila-tv" title="Televisión en vivo" href="/tv" linkLabel={`Ver los ${tv.length} canales`}>
+        <ChannelRow channels={tv.slice(0, ROW_LIMIT)} countries={countries} />
       </RowSection>
 
-      <RowSection id="fila-radio" title="Radio" href="/radio" linkLabel="Ver todas las emisoras">
-        <ChannelRow channels={radio} countries={countries} />
+      <RowSection id="fila-radio" title="Radio" href="/radio" linkLabel={`Ver las ${radio.length} emisoras`}>
+        <ChannelRow channels={radio.slice(0, ROW_LIMIT)} countries={countries} />
       </RowSection>
     </div>
   );

@@ -25,21 +25,38 @@ describe("catálogo de demostración", () => {
   });
 });
 
-describe("catálogo oficial", () => {
-  it("cumple la política: https, sitio oficial, URL permitida y procedencia oficial", () => {
-    expect(OFFICIAL_CHANNELS.length).toBeGreaterThan(0);
+describe("catálogo real de Chile", () => {
+  it("tiene televisión y radio", () => {
+    expect(OFFICIAL_CHANNELS.some((c) => c.kind === "tv")).toBe(true);
+    expect(OFFICIAL_CHANNELS.some((c) => c.kind === "radio")).toBe(true);
+  });
+
+  it("cumple la política: https, URL permitida, procedencia y estado público", () => {
     for (const c of OFFICIAL_CHANNELS) {
-      expect(isAllowedStreamUrl(c.stream.url)).toBe(true);
-      expect(c.stream.url.startsWith("https://")).toBe(true);
-      expect(c.officialSite?.startsWith("https://")).toBe(true);
-      expect(c.provenance.source).toBe("official");
-      expect(c.rightsStatus).toBe("public-official");
+      expect(isAllowedStreamUrl(c.stream.url), c.name).toBe(true);
+      expect(c.stream.url.startsWith("https://"), c.name).toBe(true);
+      expect(c.countryCode).toBe("CL");
+      expect(["public-official", "public-listed"]).toContain(c.rightsStatus);
+      expect(c.provenance.source).toBe("directory");
+      expect(c.lastCheckedAt).not.toBeNull();
+    }
+  });
+
+  it("usa el reproductor correcto según el tipo", () => {
+    for (const c of OFFICIAL_CHANNELS) {
+      expect(c.stream.format, c.name).toBe(c.kind === "tv" ? "hls" : "audio");
+    }
+  });
+
+  it("toda radio tiene sitio web propio", () => {
+    for (const c of OFFICIAL_CHANNELS.filter((x) => x.kind === "radio")) {
+      expect(c.officialSite?.startsWith("https://"), c.name).toBe(true);
     }
   });
 
   it("no incluye parámetros de token o firma en las URL", () => {
     for (const c of OFFICIAL_CHANNELS) {
-      expect(new URL(c.stream.url).search).toBe("");
+      expect(new URL(c.stream.url).search, c.name).not.toMatch(/token|sig|auth|key|hdnts|expires/i);
     }
   });
 });
@@ -67,9 +84,14 @@ describe("repositorio en memoria", () => {
     expect((await repo.listChannels()).map((c) => c.slug)).toEqual([base.slug]);
   });
 
-  it("lista solo países y categorías con señales visibles", async () => {
+  it("con señales reales de ambos tipos, solo lista los países que las tienen", async () => {
     const countries = await catalog.listCountries();
-    expect(countries.length).toBe(DEMO_COUNTRIES.length);
-    expect(await catalog.listCategories("radio")).toEqual(["Cultura", "Deportes", "Música", "Noticias"]);
+    expect(countries.map((c) => c.code)).toEqual(["CL"]);
+  });
+
+  it("lista categorías de las señales visibles", async () => {
+    const radio = await catalog.listCategories("radio");
+    expect(radio).toContain("Música");
+    expect(radio).toEqual([...radio].sort((a, b) => a.localeCompare(b, "es")));
   });
 });

@@ -14,7 +14,8 @@ export type StreamFormat = "hls" | "audio";
 /** Estado de la revisión de derechos y condiciones de uso. */
 export type RightsStatus =
   | "approved" // autorizada expresamente por el titular
-  | "public-official" // emisión pública del propio titular, sin acuerdo expreso con WorldPlay
+  | "public-official" // emisión pública servida desde la infraestructura del propio titular
+  | "public-listed" // emisión pública listada en un directorio abierto; servidor no verificado como del titular
   | "pending" // en revisión, no se muestra
   | "rejected" // no autorizada
   | "withdrawn"; // retirada (p. ej. a petición del titular)
@@ -32,8 +33,8 @@ export interface Country {
 }
 
 export interface Provenance {
-  /** "demo" para contenido sintético generado por el proyecto. */
-  source: "demo" | "official" | "licensed";
+  /** "demo" para contenido sintético generado por el proyecto; "directory" para señales tomadas de directorios abiertos. */
+  source: "demo" | "official" | "directory" | "licensed";
   note: string;
 }
 

@@ -87,6 +87,7 @@ async function CatalogResults({
         </form>
       )}
 
+      {countries.length > 1 && (
       <div className="mt-8">
         <CountryTuner
           countries={countries}
@@ -95,7 +96,8 @@ async function CatalogResults({
           keepParams={{ q: filters.query, categoria: filters.category }}
         />
       </div>
-      <div className="mt-5">
+      )}
+      <div className={countries.length > 1 ? "mt-5" : "mt-8"}>
         <CategoryFilter
           categories={categories}
           basePath={basePath}
