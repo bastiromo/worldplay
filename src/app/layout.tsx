@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Link from "next/link";
 import { Logo } from "@/components/shell/logo";
 import { PrimaryNav } from "@/components/shell/primary-nav";
 import { SearchBox } from "@/components/shell/search-box";
@@ -41,7 +42,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </div>
             <SidebarCountries />
             <p className="mt-auto px-3 pt-8 text-xs leading-relaxed text-mist">
-              Catálogo de demostración. Las señales son ficticias y generadas por WorldPlay.
+              WorldPlay enlaza emisiones públicas de sus titulares; no aloja ni retransmite contenido.{" "}
+              <Link href="/fuentes" className="text-paper/80 underline-offset-2 hover:text-dial hover:underline">
+                Fuentes y retiradas
+              </Link>
             </p>
           </aside>
 
@@ -57,9 +61,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               </div>
             </header>
 
-            <main id="contenido" className="px-4 pt-6 pb-28 sm:px-6 lg:px-10 lg:pb-16">
+            <main id="contenido" className="px-4 pt-6 pb-10 sm:px-6 lg:px-10 lg:pb-16">
               {children}
             </main>
+            <footer className="border-t border-ink-800 px-4 pt-6 pb-28 text-xs leading-relaxed text-mist sm:px-6 lg:hidden">
+              WorldPlay enlaza emisiones públicas de sus titulares; no aloja ni retransmite contenido.{" "}
+              <Link href="/fuentes" className="text-paper/80 underline underline-offset-2">
+                Fuentes y retiradas
+              </Link>
+            </footer>
           </div>
         </div>
 

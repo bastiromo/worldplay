@@ -168,7 +168,7 @@ export function useMediaSource({ mediaRef, src, format, autoPlay, loopAsLive = t
 }
 
 export const ERROR_MESSAGES: Record<PlaybackError, string> = {
-  network: "No se pudo conectar con la señal. Puede estar fuera del aire en este momento.",
+  network: "No se pudo conectar con la señal. Puede estar fuera del aire o no estar disponible desde tu país.",
   timeout: "La señal tarda demasiado en responder. Revisa tu conexión o inténtalo de nuevo.",
   media: "La señal se interrumpió o llegó con un formato dañado.",
   unsupported: "Tu navegador no puede reproducir este formato. Prueba con una versión reciente de Chrome, Firefox, Edge o Safari.",

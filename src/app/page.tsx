@@ -6,7 +6,7 @@ import { HeroPreview } from "@/components/home/hero-preview";
 import { PlayIcon } from "@/components/ui/icons";
 import { catalog } from "@/lib/catalog/repository";
 
-const FEATURED_SLUG = "cordillera-noticias";
+const FEATURED_SLUG = "24-horas-rtve";
 
 export default async function HomePage() {
   const [countries, tv, radio, featured] = await Promise.all([

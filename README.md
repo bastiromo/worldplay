@@ -2,7 +2,7 @@
 
 Plataforma web para descubrir y reproducir canales de televisión y emisoras de radio de distintos países desde un solo lugar.
 
-> **Estado:** fase 1, interfaz navegable con catálogo de demostración. Todas las señales son ficticias y sus streams son medios sintéticos generados por el propio proyecto. Aún no hay fuentes reales, base de datos ni cuentas de usuario.
+> **Estado:** etapa 5 en curso. 12 canales de TV oficiales de emisoras públicas e instituciones (España, Chile, Colombia, Argentina, Perú, México y Brasil). La radio sigue con emisoras de demostración, marcadas como tales, hasta incorporar emisoras reales. Aún no hay base de datos ni cuentas de usuario.
 
 ## Puesta en marcha
 
@@ -42,7 +42,7 @@ src/
     home/                 Vista previa de la portada
   lib/
     domain/               Tipos, búsqueda, filtros y validación de URL (sin dependencias de UI)
-    catalog/              Repositorio del catálogo y datos de demostración
+    catalog/              Repositorio del catálogo, señales oficiales y datos de demostración
 scripts/generate-demo-media.sh   Generación de vídeo HLS y audio de prueba
 public/demo/              Medios sintéticos generados
 ```
@@ -53,7 +53,10 @@ public/demo/              Medios sintéticos generados
 
 Cada señal registra procedencia, sitio oficial, estado de derechos (`rightsStatus`), disponibilidad técnica (`availability`) y fecha de última comprobación. Funcionar técnicamente y estar autorizada son condiciones distintas:
 
-- Solo se publican señales con `rightsStatus: "approved"`. Las pendientes, rechazadas o retiradas no aparecen en listados, búsquedas ni fichas.
+- Se publican señales con `rightsStatus: "approved"` (autorización expresa) o `"public-official"` (emisión pública servida por el propio titular desde su infraestructura, sin token ni cabeceras falsificadas, y fuera de la lista de retirada de iptv-org). Las pendientes, rechazadas o retiradas no aparecen en listados, búsquedas ni fichas.
+- Las señales de demostración de un tipo se ocultan automáticamente cuando existe al menos una señal real visible de ese tipo.
+- Cualquier titular puede pedir la retirada desde `/fuentes`.
+- `/verificar` (no indexada) comprueba desde el navegador que cada señal real responde, y genera un informe JSON.
 - Una señal marcada como fuera del aire informa al usuario y sugiere alternativas, sin intentar reproducirse.
 - Las URL de stream se validan (`isAllowedStreamUrl`): solo `https:` o rutas propias del sitio. Se rechazan `javascript:`, `data:`, `http:`, credenciales embebidas y rutas ambiguas.
 - WorldPlay no retransmite señales por sus servidores ni elude DRM, geobloqueos o restricciones de incrustación.

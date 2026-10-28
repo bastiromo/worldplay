@@ -92,8 +92,16 @@ const dateFormat = new Intl.DateTimeFormat("es", { dateStyle: "long", timeZone: 
 
 const SOURCE_LABEL: Record<Channel["provenance"]["source"], string> = {
   demo: "Demostración",
-  official: "Emisión oficial",
+  official: "Emisor oficial",
   licensed: "Con licencia",
+};
+
+const RIGHTS_LABEL: Record<Channel["rightsStatus"], string> = {
+  approved: "Autorizada por el titular",
+  "public-official": "Emisión pública del titular",
+  pending: "En revisión",
+  rejected: "No autorizada",
+  withdrawn: "Retirada",
 };
 
 function ChannelInfo({ channel, country }: { channel: Channel; country?: Country }) {
@@ -127,8 +135,10 @@ function ChannelInfo({ channel, country }: { channel: Channel; country?: Country
         <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
           <dt className="text-mist">Origen</dt>
           <dd>{SOURCE_LABEL[channel.provenance.source]}</dd>
+          <dt className="text-mist">Derechos</dt>
+          <dd>{RIGHTS_LABEL[channel.rightsStatus]}</dd>
           <dt className="text-mist">Comprobada</dt>
-          <dd>{dateFormat.format(new Date(channel.lastCheckedAt))}</dd>
+          <dd>{channel.lastCheckedAt ? dateFormat.format(new Date(channel.lastCheckedAt)) : "Pendiente"}</dd>
           <dt className="text-mist">Sitio oficial</dt>
           <dd>
             {channel.officialSite ? (
@@ -141,6 +151,9 @@ function ChannelInfo({ channel, country }: { channel: Channel; country?: Country
           </dd>
         </dl>
         <p className="mt-3 leading-relaxed text-mist">{channel.provenance.note}</p>
+        <Link href="/fuentes" className="mt-3 inline-block text-dial hover:underline">
+          Cómo elegimos las señales y cómo pedir una retirada
+        </Link>
       </section>
     </aside>
   );

@@ -7,9 +7,12 @@ import type { Channel } from "@/lib/domain/types";
  */
 
 export function monogram(name: string): string {
-  const words = name.split(/\s+/).filter((w) => /\p{L}/u.test(w));
-  const letters = words.length > 1 ? words[0][0] + words[1][0] : name.slice(0, 2);
-  return letters.toUpperCase();
+  const tokens = name.split(/\s+/).filter(Boolean);
+  const number = tokens.find((t) => /^\d+$/.test(t));
+  const words = tokens.filter((t) => /\p{L}/u.test(t));
+  // Los números forman parte de la identidad: "La 1" → L1, "24 Horas" → 24.
+  if (number) return (tokens[0] === number ? number.slice(0, 2) : words[0][0] + number.slice(0, 1)).toUpperCase();
+  return (words.length > 1 ? words[0][0] + words[1][0] : name.slice(0, 2)).toUpperCase();
 }
 
 export function channelNumber(n: number): string {

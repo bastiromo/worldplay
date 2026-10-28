@@ -42,6 +42,7 @@ function TvCard({ channel, country }: ChannelCardProps) {
         <span className="truncate">{country?.name ?? channel.countryCode}</span>
         <span aria-hidden="true" className="h-3 w-px bg-ink-600" />
         <span className="truncate">{channel.category}</span>
+        <DemoTag channel={channel} />
       </p>
     </Link>
   );
@@ -67,7 +68,18 @@ function RadioCard({ channel, country }: ChannelCardProps) {
       </h3>
       <p className="mt-0.5 truncate text-sm text-mist">
         {channel.category}, {country?.name ?? channel.countryCode}
+        <DemoTag channel={channel} />
       </p>
     </Link>
+  );
+}
+
+/** Distingue las señales ficticias de demostración de las emisiones reales. */
+function DemoTag({ channel }: { channel: Channel }) {
+  if (channel.provenance.source !== "demo") return null;
+  return (
+    <span className="ml-1.5 shrink-0 rounded border border-ink-600 px-1 py-px align-middle text-[0.65rem] font-medium text-mist">
+      Demo
+    </span>
   );
 }

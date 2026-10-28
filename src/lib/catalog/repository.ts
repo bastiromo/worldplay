@@ -1,7 +1,8 @@
-import { filterChannels, isPubliclyVisible } from "@/lib/domain/filters";
+import { filterChannels, isPubliclyVisible, withoutRedundantDemos } from "@/lib/domain/filters";
 import { isAllowedStreamUrl } from "@/lib/domain/stream-url";
 import type { Channel, ChannelFilters, ChannelKind, Country } from "@/lib/domain/types";
 import { DEMO_CHANNELS, DEMO_COUNTRIES } from "./demo-data";
+import { OFFICIAL_CHANNELS } from "./official-data";
 
 /**
  * Contrato de acceso al catálogo. La interfaz depende solo de esto, de modo que
@@ -23,7 +24,7 @@ export function createInMemoryCatalog(
   countries: Country[],
 ): CatalogRepository {
   // Una señal con URL no permitida nunca llega a la interfaz.
-  const safeChannels = channels.filter((c) => isAllowedStreamUrl(c.stream.url));
+  const safeChannels = withoutRedundantDemos(channels.filter((c) => isAllowedStreamUrl(c.stream.url)));
 
   return {
     async listCountries() {
@@ -56,4 +57,6 @@ export function createInMemoryCatalog(
   };
 }
 
-export const catalog: CatalogRepository = createInMemoryCatalog(DEMO_CHANNELS, DEMO_COUNTRIES);
+export const ALL_CHANNELS: Channel[] = [...OFFICIAL_CHANNELS, ...DEMO_CHANNELS];
+
+export const catalog: CatalogRepository = createInMemoryCatalog(ALL_CHANNELS, DEMO_COUNTRIES);

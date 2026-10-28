@@ -7,6 +7,7 @@ import type { Channel, Country } from "@/lib/domain/types";
  * generados por scripts/generate-demo-media.sh, sin material de terceros.
  */
 
+/** Países del catálogo (reales y de demostración). */
 export const DEMO_COUNTRIES: Country[] = [
   { code: "CL", name: "Chile", timeZone: "America/Santiago" },
   { code: "AR", name: "Argentina", timeZone: "America/Argentina/Buenos_Aires" },
@@ -78,22 +79,22 @@ function toChannel(seed: DemoSeed): Channel {
 
 const SEEDS: DemoSeed[] = [
   // --- Televisión -----------------------------------------------------------
-  { number: 1, name: "Cordillera Noticias", kind: "tv", countryCode: "CL", language: "Español", category: "Noticias", hue: 212, stream: VIDEO.aurora, description: "Informativo continuo con boletines cada hora y cobertura regional de norte a sur." },
-  { number: 2, name: "Pacífico Deportes", kind: "tv", countryCode: "CL", language: "Español", category: "Deportes", hue: 140, stream: VIDEO.pulso, description: "Fútbol, básquetbol y deportes de montaña, con resúmenes y programas de análisis." },
-  { number: 3, name: "Pampa Cultural", kind: "tv", countryCode: "AR", language: "Español", category: "Cultura", hue: 32, stream: VIDEO.fractal, description: "Cine de autor, teatro filmado y entrevistas con escritores del Río de la Plata." },
-  { number: 4, name: "Rioplatense 24", kind: "tv", countryCode: "AR", language: "Español", category: "Noticias", hue: 200, stream: VIDEO.aurora, description: "Actualidad nacional e internacional con mesas de debate por la noche." },
-  { number: 5, name: "Altiplano Kids", kind: "tv", countryCode: "PE", language: "Español", category: "Infantil", hue: 48, stream: VIDEO.pulso, description: "Animación y programas educativos para niñas y niños de 4 a 10 años." },
-  { number: 6, name: "Inca Visión", kind: "tv", countryCode: "PE", language: "Español", category: "Entretenimiento", hue: 350, stream: VIDEO.fractal, description: "Series, concursos y magazines de tarde con público en estudio." },
-  { number: 7, name: "Caribe Vivo", kind: "tv", countryCode: "CO", language: "Español", category: "Música", hue: 170, stream: VIDEO.pulso, description: "Conciertos, videoclips y sesiones en vivo de cumbia, vallenato y nuevas bandas." },
-  { number: 8, name: "Meseta Noticias", kind: "tv", countryCode: "MX", language: "Español", category: "Noticias", hue: 0, stream: VIDEO.aurora, description: "Cobertura de última hora desde la capital con corresponsales en todo el país." },
-  { number: 9, name: "Sierra Madre TV", kind: "tv", countryCode: "MX", language: "Español", category: "Cultura", hue: 280, stream: VIDEO.fractal, description: "Documentales de naturaleza, historia y gastronomía regional." },
-  { number: 10, name: "Faro Atlântico", kind: "tv", countryCode: "BR", language: "Portugués", category: "Entretenimiento", hue: 190, stream: VIDEO.aurora, description: "Telenovelas, humor y programas de variedades para toda la familia." },
-  { number: 11, name: "Arena Esporte", kind: "tv", countryCode: "BR", language: "Portugués", category: "Deportes", hue: 110, stream: VIDEO.pulso, description: "Fútbol brasileño, vóley de playa y automovilismo con transmisiones comentadas." },
-  { number: 12, name: "Ibérica Directo", kind: "tv", countryCode: "ES", language: "Español", category: "Noticias", hue: 225, stream: VIDEO.aurora, description: "Información continua con conexiones desde las comunidades autónomas." },
-  { number: 13, name: "Tejo Cultura", kind: "tv", countryCode: "PT", language: "Portugués", category: "Cultura", hue: 20, stream: VIDEO.fractal, description: "Fado en directo, arte contemporáneo y patrimonio de Lisboa a Oporto." },
-  { number: 14, name: "Canal de prueba sin conexión", kind: "tv", countryCode: "ES", language: "Español", category: "Entretenimiento", hue: 260, stream: VIDEO.aurora, availability: "offline", description: "Señal de demostración marcada como fuera del aire, para mostrar cómo se informa." },
-  { number: 15, name: "Canal de prueba con fallo", kind: "tv", countryCode: "CO", language: "Español", category: "Entretenimiento", hue: 320, stream: "/demo/video/inexistente/index.m3u8", description: "Señal de demostración cuyo stream no responde, para mostrar el estado de error." },
-  { number: 16, name: "Señal en revisión", kind: "tv", countryCode: "CL", language: "Español", category: "Noticias", hue: 60, stream: VIDEO.aurora, rightsStatus: "pending", description: "No debe aparecer en la interfaz: sus derechos aún no se han aprobado." },
+  { number: 801, name: "Cordillera Noticias", kind: "tv", countryCode: "CL", language: "Español", category: "Noticias", hue: 212, stream: VIDEO.aurora, description: "Informativo continuo con boletines cada hora y cobertura regional de norte a sur." },
+  { number: 802, name: "Pacífico Deportes", kind: "tv", countryCode: "CL", language: "Español", category: "Deportes", hue: 140, stream: VIDEO.pulso, description: "Fútbol, básquetbol y deportes de montaña, con resúmenes y programas de análisis." },
+  { number: 803, name: "Pampa Cultural", kind: "tv", countryCode: "AR", language: "Español", category: "Cultura", hue: 32, stream: VIDEO.fractal, description: "Cine de autor, teatro filmado y entrevistas con escritores del Río de la Plata." },
+  { number: 804, name: "Rioplatense 24", kind: "tv", countryCode: "AR", language: "Español", category: "Noticias", hue: 200, stream: VIDEO.aurora, description: "Actualidad nacional e internacional con mesas de debate por la noche." },
+  { number: 805, name: "Altiplano Kids", kind: "tv", countryCode: "PE", language: "Español", category: "Infantil", hue: 48, stream: VIDEO.pulso, description: "Animación y programas educativos para niñas y niños de 4 a 10 años." },
+  { number: 806, name: "Inca Visión", kind: "tv", countryCode: "PE", language: "Español", category: "Entretenimiento", hue: 350, stream: VIDEO.fractal, description: "Series, concursos y magazines de tarde con público en estudio." },
+  { number: 807, name: "Caribe Vivo", kind: "tv", countryCode: "CO", language: "Español", category: "Música", hue: 170, stream: VIDEO.pulso, description: "Conciertos, videoclips y sesiones en vivo de cumbia, vallenato y nuevas bandas." },
+  { number: 808, name: "Meseta Noticias", kind: "tv", countryCode: "MX", language: "Español", category: "Noticias", hue: 0, stream: VIDEO.aurora, description: "Cobertura de última hora desde la capital con corresponsales en todo el país." },
+  { number: 809, name: "Sierra Madre TV", kind: "tv", countryCode: "MX", language: "Español", category: "Cultura", hue: 280, stream: VIDEO.fractal, description: "Documentales de naturaleza, historia y gastronomía regional." },
+  { number: 810, name: "Faro Atlântico", kind: "tv", countryCode: "BR", language: "Portugués", category: "Entretenimiento", hue: 190, stream: VIDEO.aurora, description: "Telenovelas, humor y programas de variedades para toda la familia." },
+  { number: 811, name: "Arena Esporte", kind: "tv", countryCode: "BR", language: "Portugués", category: "Deportes", hue: 110, stream: VIDEO.pulso, description: "Fútbol brasileño, vóley de playa y automovilismo con transmisiones comentadas." },
+  { number: 812, name: "Ibérica Directo", kind: "tv", countryCode: "ES", language: "Español", category: "Noticias", hue: 225, stream: VIDEO.aurora, description: "Información continua con conexiones desde las comunidades autónomas." },
+  { number: 813, name: "Tejo Cultura", kind: "tv", countryCode: "PT", language: "Portugués", category: "Cultura", hue: 20, stream: VIDEO.fractal, description: "Fado en directo, arte contemporáneo y patrimonio de Lisboa a Oporto." },
+  { number: 814, name: "Canal de prueba sin conexión", kind: "tv", countryCode: "ES", language: "Español", category: "Entretenimiento", hue: 260, stream: VIDEO.aurora, availability: "offline", description: "Señal de demostración marcada como fuera del aire, para mostrar cómo se informa." },
+  { number: 815, name: "Canal de prueba con fallo", kind: "tv", countryCode: "CO", language: "Español", category: "Entretenimiento", hue: 320, stream: "/demo/video/inexistente/index.m3u8", description: "Señal de demostración cuyo stream no responde, para mostrar el estado de error." },
+  { number: 816, name: "Señal en revisión", kind: "tv", countryCode: "CL", language: "Español", category: "Noticias", hue: 60, stream: VIDEO.aurora, rightsStatus: "pending", description: "No debe aparecer en la interfaz: sus derechos aún no se han aprobado." },
 
   // --- Radio ---------------------------------------------------------------
   { number: 101, name: "Brisa Andina", kind: "radio", countryCode: "CL", language: "Español", category: "Música", hue: 38, stream: AUDIO.brisa, description: "Folk, cantautores y nueva canción latinoamericana las 24 horas." },

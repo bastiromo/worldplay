@@ -13,7 +13,8 @@ export type StreamFormat = "hls" | "audio";
 
 /** Estado de la revisión de derechos y condiciones de uso. */
 export type RightsStatus =
-  | "approved" // autorizada para publicarse
+  | "approved" // autorizada expresamente por el titular
+  | "public-official" // emisión pública del propio titular, sin acuerdo expreso con WorldPlay
   | "pending" // en revisión, no se muestra
   | "rejected" // no autorizada
   | "withdrawn"; // retirada (p. ej. a petición del titular)
@@ -55,8 +56,8 @@ export interface Channel {
   provenance: Provenance;
   rightsStatus: RightsStatus;
   availability: Availability;
-  /** Fecha ISO 8601 de la última comprobación técnica. */
-  lastCheckedAt: string;
+  /** Fecha ISO 8601 de la última comprobación técnica; null si aún no se ha comprobado. */
+  lastCheckedAt: string | null;
   /** Tono (0-360) para la identidad visual generada del canal. */
   hue: number;
 }

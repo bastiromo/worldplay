@@ -1,8 +1,24 @@
 import type { Channel, ChannelFilters, Country } from "./types";
 
-/** Una señal solo es visible para el público si sus derechos están aprobados. */
+/**
+ * Una señal es visible si está autorizada o si es una emisión pública del propio
+ * titular. Pendientes, rechazadas y retiradas nunca se muestran.
+ */
 export function isPubliclyVisible(channel: Channel): boolean {
-  return channel.rightsStatus === "approved";
+  return channel.rightsStatus === "approved" || channel.rightsStatus === "public-official";
+}
+
+export function isDemo(channel: Channel): boolean {
+  return channel.provenance.source === "demo";
+}
+
+/**
+ * Las señales de demostración de un tipo (TV o radio) se ocultan en cuanto existe
+ * al menos una señal real visible de ese tipo.
+ */
+export function withoutRedundantDemos(channels: Channel[]): Channel[] {
+  const kindsWithReal = new Set(channels.filter((c) => isPubliclyVisible(c) && !isDemo(c)).map((c) => c.kind));
+  return channels.filter((c) => !isDemo(c) || !kindsWithReal.has(c.kind));
 }
 
 /** Minúsculas y sin tildes, para que "Peru" encuentre "Perú". */
