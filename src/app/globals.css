@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
+/*
+ * Identidad visual de WorldPlay
+ * Noche de transmisión: azul medianoche como base, ámbar de dial como acento
+ * y rojo reservado exclusivamente para indicar "en vivo".
+ */
+@theme {
+  --color-ink-950: #0c1526;
+  --color-ink-900: #142038;
+  --color-ink-800: #1c2b49;
+  --color-ink-700: #2a3b5e;
+  --color-ink-600: #3a4d74;
+  --color-paper: #e8eefb;
+  --color-mist: #8e9cb8;
+  --color-dial: #ffb547;
+  --color-dial-strong: #ffc76e;
+  --color-live: #ff4d5e;
+
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-big-shoulders), var(--font-onest), ui-sans-serif, sans-serif;
+
+  --radius-screen: 0.75rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-ink-950);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(120% 60% at 85% -10%, #1d2f5a 0%, transparent 55%),
+    var(--color-ink-950);
+  background-attachment: fixed;
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+}
+
+/* Cifras tabulares para números de canal y horas, como en un decodificador. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-dial);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Scroll horizontal limpio para filas de canales y el sintonizador. */
+.scroll-row {
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+}
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+.scroll-row > * {
+  scroll-snap-align: start;
+}
+
+/* Pulso del indicador "en vivo". */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.live-dot {
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+/* Ecualizador del reproductor de radio: solo se anima mientras suena. */
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+.eq-bar {
+  transform-origin: bottom;
+  transform: scaleY(0.25);
+}
+[data-playing="true"] .eq-bar {
+  animation: eq 0.9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  [data-playing="true"] .eq-bar {
+    animation: none;
+  }
+  [data-playing="true"] .eq-bar {
+    transform: scaleY(0.6);
+  }
 }
